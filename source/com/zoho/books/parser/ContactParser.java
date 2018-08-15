@@ -170,6 +170,23 @@ public class ContactParser {
 
         contacts.setDefaultTemplates(defaultTemplatesObj);
 
+        JSONArray customFields = contact.getJSONArray("custom_fields"); //No I18N
+
+        List<CustomField> customFieldsList = new ArrayList<CustomField>();
+
+        for (int m = 0; m < customFields.length(); m++) {
+            CustomField customField = new CustomField();
+
+            customField.setIndex(customFields.getJSONObject(m).getInt("index")); //No I18N
+            customField.setValue(customFields.getJSONObject(m).getString("value"));
+            customField.setShowOnPdf(customFields.getJSONObject(m).getBoolean("show_on_pdf")); //No I18N
+            customField.setLabel(customFields.getJSONObject(m).getString("label"));
+
+            customFieldsList.add(m, customField);
+        }
+
+        contacts.setCustomFields(customFieldsList);
+
         return contacts;
 
     }
