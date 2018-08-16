@@ -329,7 +329,8 @@ public class ContactParser {
             contactPerson.setPhone(jsonArray.getJSONObject(i).getString("phone"));
             contactPerson.setMobile(jsonArray.getJSONObject(i).getString("mobile"));
             contactPerson.setIsPrimaryContact(jsonArray.getJSONObject(i).getBoolean("is_primary_contact")); //No I18N
-            if (jsonArray.getJSONObject(i).has("is_added_in_portal")) {
+            if (jsonArray.getJSONObject(i).has("is_added_in_portal")
+                    && !jsonArray.getJSONObject(i).getString("is_added_in_portal").isEmpty()) {
                 contactPerson.setAddedInPortal(jsonArray.getJSONObject(i).getBoolean("is_added_in_portal")); //No I18N
             }
             if (jsonArray.getJSONObject(i).has("can_invite")) {
