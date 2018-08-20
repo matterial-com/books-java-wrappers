@@ -37,13 +37,21 @@ public class CustomerPaymentParser {
         customerPayments.setCustomerName(payment.getString("customer_name"));
         customerPayments.setPaymentMode(payment.getString("payment_mode"));
         customerPayments.setDate(payment.getString("date"));
-        customerPayments.setAccountId(payment.getString("account_id"));
-        customerPayments.setAccountName(payment.getString("account_name"));
+        if (payment.has("account_id")) {
+            customerPayments.setAccountId(payment.getString("account_id"));
+        }
+        if (payment.has("account_name")) {
+            customerPayments.setAccountName(payment.getString("account_name"));
+        }
         customerPayments.setExchangeRate(payment.getDouble("exchange_rate"));   //No I18N
         customerPayments.setAmount(payment.getDouble("amount"));        //No I18N
         customerPayments.setBankCharges(payment.getDouble("bank_charges"));    //No I18N
-        customerPayments.setTaxAccountId(payment.getString("tax_account_id"));
-        customerPayments.setTaxAccountName(payment.getString("tax_account_name"));
+        if (payment.has("tax_account_id")) {
+            customerPayments.setTaxAccountId(payment.getString("tax_account_id"));
+        }
+        if (payment.has("tax_account_name")) {
+            customerPayments.setTaxAccountName(payment.getString("tax_account_name"));
+        }
         customerPayments.setTaxAmountWithheld(payment.getDouble("tax_amount_withheld")); //No I18N
         customerPayments.setDescription(payment.getString("description"));
         customerPayments.setReferenceNumber(payment.getString("reference_number"));
