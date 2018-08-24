@@ -670,6 +670,23 @@ public class InvoicesApi extends API {
     }
 
     /**
+     * Single invoice export as pdf.
+     * @param invoiceId invoiceId to be exported as pdf.
+     * @return Returns a File that is stored in a current directory.
+     */
+
+    public File export(String invoiceId) throws Exception {
+
+        String urlString = url + "/" + invoiceId; //No I18N
+        HashMap<String, Object> queryMap = new HashMap<String, Object>();
+        queryMap.put("accept", "pdf");
+
+        File file = ZohoHTTPClient.getFile(urlString, getQueryMap(queryMap));
+
+        return file;
+    }
+
+    /**
      * Maximum of 25 invoices can be exported in a single pdf.
      * <p>
      * Pass the query string parameters to get multiple invoices in a single pdf.
@@ -916,7 +933,7 @@ public class InvoicesApi extends API {
     }
 
 
-//=============================================================================================================================================	
+//=============================================================================================================================================
 
 
     /**
