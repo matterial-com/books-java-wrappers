@@ -109,8 +109,12 @@ public class CustomerPaymentParser {
             customerPayment.setBcyAmount(customerpayments.getJSONObject(i).getDouble("bcy_amount"));        //No I18N
             customerPayment.setUnusedAmount(customerpayments.getJSONObject(i).getDouble("unused_amount"));        //No I18N
             customerPayment.setBcyUnusedAmount(customerpayments.getJSONObject(i).getDouble("bcy_unused_amount"));    //No I18N
-            customerPayment.setAccountId(customerpayments.getJSONObject(i).getString("account_id"));
-            customerPayment.setAccountName(customerpayments.getJSONObject(i).getString("account_name"));
+            if (customerpayments.getJSONObject(i).has("account_id")) {
+                customerPayment.setAccountId(customerpayments.getJSONObject(i).getString("account_id"));
+            }
+            if (customerpayments.getJSONObject(i).has("account_name")) {
+                customerPayment.setAccountName(customerpayments.getJSONObject(i).getString("account_name"));
+            }
             customerPayment.setDescription(customerpayments.getJSONObject(i).getString("description"));
             customerPayment.setReferenceNumber(customerpayments.getJSONObject(i).getString("reference_number"));
             customerPayment.setCustomerId(customerpayments.getJSONObject(i).getString("customer_id"));
